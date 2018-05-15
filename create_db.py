@@ -49,6 +49,3 @@ if __name__ == '__main__':
     except Exception as e:
         print(e)
 
-    import pandas as pd
-
-    print(pd.read_sql('readings', connection))
