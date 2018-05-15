@@ -7,6 +7,7 @@ if __name__ == '__main__':
 
     connection = engine.connect()
 
+    # creating a sql table
     sql = """
     CREATE TABLE readings (
         flight    VARCHAR(10) NOT NULL,
@@ -26,12 +27,14 @@ if __name__ == '__main__':
     """
     connection.execute(sql)
 
+    # inserting values into the table
     sql = """
         INSERT INTO readings(flight, ts, temp, pressure, humidity)
         VALUES ('hab1', '2015-01-01 09:00:00', 25.5, 1020, 40)
     """
     connection.execute(sql)
 
+    # inserting more values
     sql = """
         INSERT INTO readings(flight, ts, temp, pressure, humidity)
         VALUES
@@ -40,6 +43,7 @@ if __name__ == '__main__':
     """
     connection.execute(sql)
 
+    # inserting invalid values (negative pressure reading)
     sql = """
         INSERT INTO readings(flight, ts, temp, pressure, humidity)
         VALUES ('hab1', '2015-01-01 09:03:00', 25.5, -1000, 40)
@@ -48,4 +52,3 @@ if __name__ == '__main__':
         connection.execute(sql)
     except Exception as e:
         print(e)
-
